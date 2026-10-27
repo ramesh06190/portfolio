@@ -1,0 +1,149 @@
+@use "../tokens/spacing" as *;
+@use "../tokens/typography" as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-subtle);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: space(3);
+    min-height: 4rem;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: space(2);
+  margin-right: auto;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &__mark {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: radius("md");
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: text-size("sm");
+  }
+}
+
+.nav-toggle,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: space(2);
+  min-height: 2.75rem; // 44px touch target
+  padding: 0 space(3);
+  font: inherit;
+  font-size: text-size("sm");
+  font-weight: 600;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: radius("md");
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-surface);
+  }
+}
+
+// Show the icon for the theme the button switches to
+.theme-toggle {
+  &__icon--sun {
+    display: none;
+  }
+
+  &.is-dark {
+    .theme-toggle__icon--sun { display: block; }
+    .theme-toggle__icon--moon { display: none; }
+  }
+}
+
+.nav-toggle {
+  @include up("lg") {
+    display: none;
+  }
+
+  &__bars,
+  &__bars::before,
+  &__bars::after {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+  }
+
+  &__bars::before,
+  &__bars::after {
+    content: "";
+    position: absolute;
+  }
+
+  &__bars::before { top: -6px; }
+  &__bars::after { top: 6px; }
+}
+
+.site-nav {
+  order: 3;
+  flex-basis: 100%;
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 space(3);
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    display: block;
+    padding: space(3) space(2);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: radius("sm");
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+  }
+
+  @include up("lg") {
+    display: block;
+    order: 0;
+    flex-basis: auto;
+
+    ul {
+      flex-direction: row;
+      gap: space(1);
+      padding: 0;
+    }
+
+    a {
+      padding: space(2);
+    }
+  }
+}

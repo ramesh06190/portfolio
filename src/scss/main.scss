@@ -1,0 +1,10 @@
+// Entry point. Every partial reads from the same tokens, so the whole UI is themed from one place.
+@use "base";
+@use "layout";
+@use "components/header";
+@use "components/buttons";
+@use "components/cards";
+@use "components/tabs";
+@use "components/accordion";
+@use "components/forms";
+@use "components/dialog";

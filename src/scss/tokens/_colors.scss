@@ -1,0 +1,43 @@
+// Color tokens. Every text and UI pair was checked against WCAG 2.1 AA
+// (4.5:1 for text, 3:1 for UI borders and focus indicators).
+$light: (
+  "bg": #ffffff,
+  "surface": #f3f6f9,
+  "surface-raised": #ffffff,
+  "text": #1b1f24,
+  "text-muted": #4a5561,
+  "border": #8a96a3,
+  "border-subtle": #d5dce3,
+  "primary": #0b5cad,
+  "primary-hover": #084a8c,
+  "on-primary": #ffffff,
+  "accent-bg": #e6f0fa,
+  "focus": #0b5cad,
+  "error": #b3261e,
+  "error-bg": #fdecea,
+  "success": #1e6b34,
+);
+
+$dark: (
+  "bg": #0f1419,
+  "surface": #161d25,
+  "surface-raised": #1d2630,
+  "text": #e6edf3,
+  "text-muted": #a9b4c0,
+  "border": #6b7886,
+  "border-subtle": #2c3743,
+  "primary": #6cb6ff,
+  "primary-hover": #9ccdff,
+  "on-primary": #0f1419,
+  "accent-bg": #17304a,
+  "focus": #9ccdff,
+  "error": #ff9a8f,
+  "error-bg": #3a1a17,
+  "success": #7ee2a0,
+);
+
+@mixin emit($theme) {
+  @each $name, $value in $theme {
+    --color-#{$name}: #{$value};
+  }
+}

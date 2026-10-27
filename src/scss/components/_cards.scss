@@ -1,0 +1,116 @@
+@use "../tokens/spacing" as *;
+@use "../tokens/typography" as *;
+
+.card-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: space(5);
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.card {
+  padding: space(5);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: radius("lg");
+
+  &__title {
+    font-size: text-size("lg");
+    margin-bottom: space(3);
+
+    &--spaced {
+      margin-top: space(7);
+    }
+  }
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: space(2);
+
+  li {
+    padding: space(1) space(3);
+    font-size: text-size("sm");
+    background: var(--color-accent-bg);
+    border-radius: radius("pill");
+  }
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  display: grid;
+  gap: space(5);
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+
+  &__item {
+    counter-increment: step;
+    padding-top: space(4);
+    border-top: 3px solid var(--color-primary);
+
+    &::before {
+      content: counter(step, decimal-leading-zero);
+      display: block;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: space(2);
+    }
+
+    p {
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+  }
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: space(2) space(6);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+
+  li {
+    position: relative;
+    padding-left: space(6);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.35rem;
+      top: 0.3em;
+      width: 0.45rem;
+      height: 0.8rem;
+      border: solid var(--color-success);
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.case {
+  margin: 0;
+  display: grid;
+  gap: space(4);
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+}
+
+.meta {
+  color: var(--color-text-muted);
+  font-size: text-size("sm");
+}

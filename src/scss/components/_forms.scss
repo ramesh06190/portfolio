@@ -1,0 +1,119 @@
+@use "../tokens/spacing" as *;
+@use "../tokens/typography" as *;
+
+.lab {
+  display: grid;
+  gap: space(5);
+
+  @include up("lg") {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+.form {
+  display: grid;
+  gap: space(5);
+  justify-items: start;
+}
+
+.field {
+  display: grid;
+  gap: space(1);
+  width: 100%;
+  max-width: 28rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  label,
+  legend {
+    font-weight: 600;
+    padding: 0;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: text-size("sm");
+    color: var(--color-text-muted);
+  }
+
+  &__error {
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-error);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: space(2) space(3);
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: radius("sm");
+
+    &:focus-visible {
+      border-color: var(--color-focus);
+    }
+
+    // Invalid state is shown by a thicker border too, not by color alone
+    &[aria-invalid="true"] {
+      border-color: var(--color-error);
+      border-left-width: 6px;
+    }
+  }
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: space(2);
+  min-height: 2.75rem;
+
+  input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    accent-color: var(--color-primary);
+  }
+
+  label {
+    font-weight: 400;
+  }
+}
+
+.error-summary {
+  margin-bottom: space(5);
+  padding: space(4) space(5);
+  background: var(--color-error-bg);
+  border: 3px solid var(--color-error);
+  border-radius: radius("md");
+
+  h4 {
+    margin-bottom: space(2);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: space(5);
+  }
+
+  a {
+    color: var(--color-error);
+    font-weight: 600;
+  }
+}
+
+.status {
+  min-height: 1.6em;
+  margin-top: space(3);
+  font-weight: 600;
+  color: var(--color-success);
+}

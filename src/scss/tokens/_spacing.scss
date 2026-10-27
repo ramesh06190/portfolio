@@ -1,0 +1,40 @@
+@use "sass:map";
+
+// 4px based spacing scale
+$space: (
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 0.75rem,
+  "4": 1rem,
+  "5": 1.5rem,
+  "6": 2rem,
+  "7": 3rem,
+  "8": 4.5rem,
+);
+
+$radius: (
+  "sm": 4px,
+  "md": 8px,
+  "lg": 14px,
+  "pill": 999px,
+);
+
+$breakpoints: (
+  "sm": 36em,
+  "md": 48em,
+  "lg": 64em,
+);
+
+@function space($key) {
+  @return map.get($space, "#{$key}");
+}
+
+@function radius($key) {
+  @return map.get($radius, $key);
+}
+
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pydi Adapa | Full Stack .NET Developer</title>
+  <meta name="description" content="Portfolio of Pydi Adapa, a full stack .NET developer who builds accessible, responsive web applications with C#, ASP.NET Core, HTML5, Sass and JavaScript.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b5cad'/><text x='16' y='22' font-size='15' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>PA</text></svg>">
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    // Apply the theme before paint to avoid a flash. ?theme=dark in the URL wins over the saved choice.
+    try {
+      var t = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Pydi Adapa, back to top">
+        <span class="brand__mark" aria-hidden="true">PA</span>
+        <span class="brand__name">Pydi Adapa</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="nav-toggle__label">Menu</span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#accessibility">Accessibility</a></li>
+          <li><a href="#lab">Component Lab</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button">
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="theme-toggle__label">Switch to dark theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <p class="eyebrow">Full Stack .NET Developer</p>
+        <h1 id="hero-title">I build accessible, responsive web apps on .NET and modern front-end tools.</h1>
+        <p class="lead">
+          Since 2019 I have worked on government, healthcare, banking and logistics systems,
+          writing C# and ASP.NET Core on the back end and HTML5, Sass, JavaScript, Blazor,
+          React and Angular on the front end. I care about interfaces that work for everyone,
+          including people using a keyboard or a screen reader.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#work">See my work</a>
+          <a class="btn btn--ghost" href="#lab">Try the component lab</a>
+        </div>
+        <ul class="hero__facts" aria-label="Quick facts">
+          <li><strong>WCAG 2.1 AA</strong><span>and Section 508</span></li>
+          <li><strong>.NET 4.8 to .NET 10</strong><span>modernization</span></li>
+          <li><strong>Azure DevOps</strong><span>CI/CD pipelines</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about">
+        <h2 id="about-title">About me</h2>
+        <div class="about__body">
+          <p>
+            I am a software developer with Agneto, currently working on the State of Wisconsin
+            Department of Workforce Development Claimant and Worker Portal. My day to day is a mix
+            of migrating a large legacy app to .NET 10, building features in ASP.NET Core MVC with
+            Razor, and making sure every page we ship meets WCAG 2.1 AA and Section 508.
+          </p>
+          <p>
+            Before that I built a vendor portal in Blazor WebAssembly at Holman, banking dashboards
+            in React at Citizens, clinical intake modules at Molina Healthcare and Angular admin
+            tools at Tata Advanced Systems. I hold a Master of Science in Applied Computer Science
+            from Northwest Missouri State University and I have published research on generative AI.
+          </p>
+          <p>
+            This site is my code sample. It is hand written HTML5, Sass and vanilla JavaScript with
+            no UI framework, and it is checked with axe on every build.
+            <a href="https://github.com/ramesh06190/portfolio">Read the source on GitHub</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section section--alt" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title">Skills</h2>
+        <ul class="card-grid card-grid--4" role="list">
+          <li class="card">
+            <h3 class="card__title">Back end</h3>
+            <ul class="tag-list" role="list">
+              <li>C#</li><li>ASP.NET Core</li><li>ASP.NET MVC</li><li>Web API</li>
+              <li>Entity Framework Core</li><li>Dapper</li><li>.NET 8 and 10</li><li>Microservices</li>
+            </ul>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Front end</h3>
+            <ul class="tag-list" role="list">
+              <li>HTML5</li><li>CSS3</li><li>Sass</li><li>JavaScript ES6+</li><li>TypeScript</li>
+              <li>Blazor</li><li>React</li><li>Angular</li><li>Bootstrap 5</li><li>Telerik UI</li>
+            </ul>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Accessibility and UX</h3>
+            <ul class="tag-list" role="list">
+              <li>WCAG 2.1 AA</li><li>Section 508</li><li>WAI-ARIA</li><li>axe DevTools</li>
+              <li>Lighthouse</li><li>NVDA</li><li>Responsive design</li><li>Figma</li>
+            </ul>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Data, cloud and delivery</h3>
+            <ul class="tag-list" role="list">
+              <li>SQL Server</li><li>Oracle</li><li>REST APIs</li><li>Azure Service Bus</li>
+              <li>Azure Functions</li><li>Azure DevOps</li><li>GitHub</li><li>CI/CD</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Experience (tabs) -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <h2 id="experience-title">Experience</h2>
+        <p class="section__intro">Use the arrow keys to move between employers once a tab has focus.</p>
+
+        <div class="tabs" data-tabs>
+          <div class="tabs__list" role="tablist" aria-label="Employers">
+            <button role="tab" id="tab-dwd" aria-controls="panel-dwd" aria-selected="true">State of Wisconsin DWD</button>
+            <button role="tab" id="tab-holman" aria-controls="panel-holman" aria-selected="false" tabindex="-1">Holman</button>
+            <button role="tab" id="tab-citizens" aria-controls="panel-citizens" aria-selected="false" tabindex="-1">Citizens</button>
+            <button role="tab" id="tab-molina" aria-controls="panel-molina" aria-selected="false" tabindex="-1">Molina Healthcare</button>
+            <button role="tab" id="tab-tasl" aria-controls="panel-tasl" aria-selected="false" tabindex="-1">Tata Advanced Systems</button>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-dwd" aria-labelledby="tab-dwd" tabindex="0">
+            <h3>Software Developer, Agneto <span class="muted">for</span> State of Wisconsin DWD</h3>
+            <p class="meta">Jan 2026 to present</p>
+            <ul>
+              <li>Migrating the Claimant and Worker Portal from .NET Framework 4.8 to .NET 10 with SDK style projects and constructor based dependency injection.</li>
+              <li>Building features in ASP.NET Core MVC with Razor on a layered Repository, Manager, Facade and Controller design over Oracle.</li>
+              <li>Auditing and fixing pages against WCAG 2.1 AA and Section 508 with axe DevTools, Lighthouse and NVDA.</li>
+              <li>Rebuilding legacy layouts with semantic HTML5, Flexbox, CSS Grid and SCSS, usable at 320px width and 200% zoom.</li>
+              <li>Bilingual localization with .resx files, unit tests with Moq and Fluent Assertions, and on call production support.</li>
+            </ul>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-holman" aria-labelledby="tab-holman" tabindex="0" hidden>
+            <h3>.NET Full Stack Developer, Holman</h3>
+            <p class="meta">Feb 2024 to Dec 2025</p>
+            <ul>
+              <li>Built the vendor portal front end in Blazor WebAssembly with Telerik UI and Bootstrap, and owned its reusable UI component library.</li>
+              <li>Worked with UX designers on layouts and information architecture, and applied WCAG 2.0 AA practices across components.</li>
+              <li>Delivered .NET 8 REST APIs with versioning, validation and server side paging, and microservices on Azure Service Bus and Azure Functions.</li>
+              <li>Tuned SQL queries and stored procedures, and ran releases through Azure DevOps with branch policies and PR reviews.</li>
+            </ul>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-citizens" aria-labelledby="tab-citizens" tabindex="0" hidden>
+            <h3>Software Developer, Citizens Financial Group</h3>
+            <p class="meta">Apr 2023 to Dec 2023</p>
+            <ul>
+              <li>Built responsive commercial banking dashboards in React with Redux, Context and Bootstrap using semantic HTML.</li>
+              <li>Moved legacy dashboard modules to ASP.NET Core Web APIs and set up Azure DevOps YAML pipelines.</li>
+              <li>Tested components with Jest and APIs with xUnit and Postman collections.</li>
+            </ul>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-molina" aria-labelledby="tab-molina" tabindex="0" hidden>
+            <h3>.NET Developer, Molina Healthcare (Infosys)</h3>
+            <p class="meta">Feb 2022 to Aug 2022</p>
+            <ul>
+              <li>Upgraded clinical intake modules from ASP.NET MVC 5 to ASP.NET Core 3.1.</li>
+              <li>Built React modules with hooks and Bootstrap, and a rule driven validation layer for patient intake forms.</li>
+              <li>Applied HIPAA safeguards for PHI and supported production with SQL Server data checks.</li>
+            </ul>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-tasl" aria-labelledby="tab-tasl" tabindex="0" hidden>
+            <h3>.NET Developer, Tata Advanced Systems</h3>
+            <p class="meta">Jun 2019 to Feb 2022</p>
+            <ul>
+              <li>Built intranet modules in ASP.NET MVC and refactored legacy C# and VB.NET code.</li>
+              <li>Delivered Angular admin features with reusable components and a standardized Angular Material theme.</li>
+              <li>Added keyboard navigation, ARIA and semantic markup to MVC views to meet WCAG 2.0 AA.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case studies (accordion) -->
+    <section class="section section--alt" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <h2 id="work-title">Selected work</h2>
+        <p class="section__intro">
+          Client code and screens are confidential, so these are written case studies.
+          The live, inspectable code sample is this site and the component lab below.
+        </p>
+
+        <div class="accordion" data-accordion>
+          <div class="accordion__item">
+            <h3 class="accordion__heading">
+              <button type="button" class="accordion__trigger" aria-expanded="true" aria-controls="cs-dwd" id="cs-dwd-btn">
+                Claimant and Worker Portal accessibility and .NET 10 modernization
+              </button>
+            </h3>
+            <div class="accordion__panel" id="cs-dwd" role="region" aria-labelledby="cs-dwd-btn">
+              <dl class="case">
+                <div><dt>Problem</dt><dd>A large public facing portal on .NET Framework 4.8 with legacy table layouts, unlabeled form fields and inconsistent keyboard support.</dd></div>
+                <div><dt>What I did</dt><dd>Audited pages with axe DevTools, Lighthouse and NVDA, logged issues by WCAG success criterion, then fixed labels, contrast, focus order, landmarks, heading structure and announced validation errors. Rebuilt layouts in semantic HTML5, CSS Grid and SCSS while helping move the codebase to .NET 10.</dd></div>
+                <div><dt>Result</dt><dd>Pages that reflow at 320px, work at 200% zoom and can be completed with a keyboard and screen reader, on a modern and testable codebase.</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3 class="accordion__heading">
+              <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="cs-holman" id="cs-holman-btn">
+                Vendor portal UI component library in Blazor
+              </button>
+            </h3>
+            <div class="accordion__panel" id="cs-holman" role="region" aria-labelledby="cs-holman-btn" hidden>
+              <dl class="case">
+                <div><dt>Problem</dt><dd>Vendors needed one place to manage orders from creation through delivery and invoicing, on desktop and mobile.</dd></div>
+                <div><dt>What I did</dt><dd>Built the front end in Blazor WebAssembly with Telerik UI and Bootstrap, kept a shared library of reusable components, and worked with UX designers to turn layouts into working screens backed by .NET 8 APIs.</dd></div>
+                <div><dt>Result</dt><dd>A consistent, responsive portal where new screens reuse tested components instead of one off markup.</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3 class="accordion__heading">
+              <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="cs-citizens" id="cs-citizens-btn">
+                Commercial banking dashboards in React
+              </button>
+            </h3>
+            <div class="accordion__panel" id="cs-citizens" role="region" aria-labelledby="cs-citizens-btn" hidden>
+              <dl class="case">
+                <div><dt>Problem</dt><dd>Legacy dashboard modules were hard to change and did not work well on smaller screens.</dd></div>
+                <div><dt>What I did</dt><dd>Exposed the data through ASP.NET Core Web APIs and rebuilt the views in React with Redux and Bootstrap, using semantic HTML and accessible data tables.</dd></div>
+                <div><dt>Result</dt><dd>Responsive dashboards on a clean API layer, covered by Jest and xUnit tests in an Azure DevOps pipeline.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accessibility -->
+    <section class="section" id="accessibility" aria-labelledby="a11y-title">
+      <div class="container">
+        <h2 id="a11y-title">How I work on accessibility</h2>
+        <ol class="steps" role="list">
+          <li class="steps__item">
+            <h3>Start with native HTML</h3>
+            <p>Real buttons, labels, landmarks and headings first. ARIA only fills gaps that HTML cannot.</p>
+          </li>
+          <li class="steps__item">
+            <h3>Test automatically</h3>
+            <p>axe DevTools and Lighthouse during development, and axe in the build pipeline so regressions fail the build.</p>
+          </li>
+          <li class="steps__item">
+            <h3>Test by hand</h3>
+            <p>Keyboard only walkthroughs, screen reader checks, 200% zoom, 320px reflow and contrast checks on every new screen.</p>
+          </li>
+          <li class="steps__item">
+            <h3>Track by criterion</h3>
+            <p>Log each issue against its WCAG 2.1 success criterion and severity so fixes are prioritized and verifiable.</p>
+          </li>
+        </ol>
+
+        <h3 class="subhead">What this site does</h3>
+        <ul class="checklist" role="list">
+          <li>Skip link, landmarks and a logical heading outline</li>
+          <li>Text and UI contrast that meets AA in both light and dark themes</li>
+          <li>Visible focus on every interactive element</li>
+          <li>Full keyboard support, including arrow keys in the tabs</li>
+          <li>Respects reduced motion and system color scheme settings</li>
+          <li>Reflows to a single column at 320px with no horizontal scroll</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Component lab -->
+    <section class="section section--alt" id="lab" aria-labelledby="lab-title">
+      <div class="container">
+        <h2 id="lab-title">Component lab</h2>
+        <p class="section__intro">
+          Working examples of patterns I build in production, styled from the same Sass design tokens as the rest of the site.
+          Try them with only a keyboard or with a screen reader.
+        </p>
+
+        <div class="lab">
+          <!-- Form validation -->
+          <div class="card lab__card">
+            <h3 class="card__title">Accessible form validation</h3>
+            <p class="muted">Errors are tied to fields with aria-describedby, summarized at the top, and focus moves to the summary. Nothing is sent anywhere.</p>
+
+            <div class="error-summary" id="error-summary" tabindex="-1" hidden>
+              <h4 id="error-summary-title">There is a problem</h4>
+              <ul aria-labelledby="error-summary-title"></ul>
+            </div>
+
+            <form class="form" id="demo-form" novalidate>
+              <div class="field">
+                <label for="f-name">Full name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error">
+                <p class="field__error" id="f-name-error"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-email">Email address</label>
+                <p class="field__hint" id="f-email-hint">For example, name@example.com</p>
+                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint f-email-error">
+                <p class="field__error" id="f-email-error"></p>
+              </div>
+
+              <fieldset class="field">
+                <legend>Preferred contact method</legend>
+                <div class="radio">
+                  <input type="radio" id="f-contact-email" name="contact" value="email" required aria-describedby="f-contact-error">
+                  <label for="f-contact-email">Email</label>
+                </div>
+                <div class="radio">
+                  <input type="radio" id="f-contact-phone" name="contact" value="phone" aria-describedby="f-contact-error">
+                  <label for="f-contact-phone">Phone</label>
+                </div>
+                <p class="field__error" id="f-contact-error"></p>
+              </fieldset>
+
+              <button class="btn btn--primary" type="submit">Submit</button>
+            </form>
+          </div>
+
+          <!-- Dialog + live region -->
+          <div class="card lab__card">
+            <h3 class="card__title">Modal dialog</h3>
+            <p class="muted">Uses the native dialog element, so focus is trapped inside, Escape closes it, and focus returns to the button that opened it.</p>
+            <button class="btn btn--primary" type="button" data-open-dialog="demo-dialog">Open dialog</button>
+
+            <h3 class="card__title card__title--spaced">Live status message</h3>
+            <p class="muted">Screen readers announce the update without moving focus.</p>
+            <button class="btn btn--ghost" type="button" id="save-draft">Save draft</button>
+            <p class="status" id="status" role="status"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact">
+        <h2 id="contact-title">Contact</h2>
+        <p class="lead">Open to senior .NET and front-end roles, especially government and healthcare work.</p>
+        <ul class="contact__links" role="list">
+          <li><a class="btn btn--primary" href="mailto:pydi.adapa@gmail.com">Email pydi.adapa@gmail.com</a></li>
+          <li><a class="btn btn--ghost" href="https://www.linkedin.com/in/pydiadapa/" rel="noopener">LinkedIn profile</a></li>
+          <li><a class="btn btn--ghost" href="https://github.com/ramesh06190" rel="noopener">GitHub profile</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built by Pydi Adapa with HTML5, Sass and vanilla JavaScript. Tested with axe for WCAG 2.1 AA.</p>
+    </div>
+  </footer>
+
+  <dialog class="dialog" id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+    <h2 id="dialog-title">Confirm submission</h2>
+    <p id="dialog-desc">This is a demo dialog. Press Tab to move between the buttons, or Escape to close it.</p>
+    <div class="dialog__actions">
+      <button class="btn btn--ghost" type="button" data-close-dialog>Cancel</button>
+      <button class="btn btn--primary" type="button" data-close-dialog>Confirm</button>
+    </div>
+  </dialog>
+</body>
+</html>
