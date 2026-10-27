@@ -12,6 +12,10 @@ My personal portfolio and front-end code sample, live at
 It is hand written HTML5, Sass and vanilla JavaScript with no UI framework, built on its own
 small design system and tested to WCAG 2.1 AA on every push.
 
+The .NET and back-end code sample that goes with it is
+**[claims-portal-dotnet](https://github.com/ramesh06190/claims-portal-dotnet)**: ASP.NET Core MVC on
+.NET 10, a REST API, EF Core on SQL Server, and an accessible ASP.NET Web Forms page.
+
 ## Pages
 
 | Page | What it shows |
