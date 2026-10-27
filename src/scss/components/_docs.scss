@@ -18,10 +18,12 @@ code {
 
 .two-col {
   display: grid;
+  // minmax(0, 1fr) lets the column shrink below its widest child, so wide tables scroll in their own box instead of widening the page
+  grid-template-columns: minmax(0, 1fr);
   gap: space(6);
 
   @include up("lg") {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
@@ -141,6 +143,8 @@ code {
 
 .claim-layout {
   display: grid;
+  // minmax(0, 1fr) lets the column shrink below its widest child, so wide tables scroll in their own box instead of widening the page
+  grid-template-columns: minmax(0, 1fr);
   gap: space(7);
 
   @include up("lg") {
