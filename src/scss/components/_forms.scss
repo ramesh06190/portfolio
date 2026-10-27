@@ -1,5 +1,6 @@
 @use "../tokens/spacing" as *;
 @use "../tokens/typography" as *;
+@use "../mixins" as *;
 
 .lab {
   display: grid;
@@ -49,7 +50,8 @@
   }
 
   input[type="text"],
-  input[type="email"] {
+  input[type="email"],
+  input[type="tel"] {
     width: 100%;
     min-height: 2.75rem;
     padding: space(2) space(3);
@@ -59,7 +61,9 @@
     border: 2px solid var(--color-border);
     border-radius: radius("sm");
 
-    &:focus-visible {
+    &:focus-visible,
+    &.is-focus {
+      @include focus-ring;
       border-color: var(--color-focus);
     }
 
@@ -96,7 +100,10 @@
   border: 3px solid var(--color-error);
   border-radius: radius("md");
 
+  h2,
+  h3,
   h4 {
+    font-size: text-size("lg");
     margin-bottom: space(2);
   }
 
@@ -116,4 +123,54 @@
   margin-top: space(3);
   font-weight: 600;
   color: var(--color-success);
+}
+
+.form__section-title {
+  margin: space(4) 0 0;
+  font-size: text-size("xl");
+}
+
+// Fixed width inputs hint at the expected length of the answer
+// Needs the input type in the selector to beat the full width rule above
+.field input.input--2 { width: 3.75rem; }
+.field input.input--4 { width: 5.25rem; }
+.field input.input--short { max-width: 12rem; }
+.field input.input--medium { max-width: 16rem; }
+
+// Memorable date: day, month and year side by side, each with its own label
+.date-input {
+  &__parts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space(4);
+  }
+
+  &__part {
+    display: grid;
+    gap: space(1);
+
+    label {
+      font-weight: 400;
+    }
+  }
+}
+
+.input-prefix {
+  display: flex;
+  align-items: stretch;
+
+  &__symbol {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    font-weight: 700;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-right: 0;
+    border-radius: radius("sm") 0 0 radius("sm");
+  }
+
+  input[type="text"] {
+    border-radius: 0 radius("sm") radius("sm") 0;
+  }
 }

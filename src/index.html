@@ -1,61 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- @include head -->
   <title>Pydi Adapa | Full Stack .NET Developer</title>
   <meta name="description" content="Portfolio of Pydi Adapa, a full stack .NET developer who builds accessible, responsive web applications with C#, ASP.NET Core, HTML5, Sass and JavaScript.">
-  <meta name="color-scheme" content="light dark">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b5cad'/><text x='16' y='22' font-size='15' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>PA</text></svg>">
-  <link rel="stylesheet" href="css/main.css">
-  <script>
-    // Apply the theme before paint to avoid a flash. ?theme=dark in the URL wins over the saved choice.
-    try {
-      var t = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme");
-      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-    } catch (e) {}
-  </script>
-  <script src="js/main.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="#top" aria-label="Pydi Adapa, back to top">
-        <span class="brand__mark" aria-hidden="true">PA</span>
-        <span class="brand__name">Pydi Adapa</span>
-      </a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle__bars" aria-hidden="true"></span>
-        <span class="nav-toggle__label">Menu</span>
-      </button>
-
-      <nav id="site-nav" class="site-nav" aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#accessibility">Accessibility</a></li>
-          <li><a href="#lab">Component Lab</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <button class="theme-toggle" type="button">
-        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-          <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/>
-        </svg>
-        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-          <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
-          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span class="theme-toggle__label">Switch to dark theme</span>
-      </button>
-    </div>
-  </header>
+<body data-page="home">
+  <!-- @include header -->
 
   <main id="main" tabindex="-1">
     <!-- Hero -->
@@ -70,8 +21,9 @@
           including people using a keyboard or a screen reader.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#work">See my work</a>
-          <a class="btn btn--ghost" href="#lab">Try the component lab</a>
+          <a class="btn btn--primary" href="audit.html">Read my accessibility audit</a>
+          <a class="btn btn--ghost" href="components.html">Try the components</a>
+          <a class="btn btn--ghost" href="design-system.html">See the design system</a>
         </div>
         <ul class="hero__facts" aria-label="Quick facts">
           <li><strong>WCAG 2.1 AA</strong><span>and Section 508</span></li>
@@ -100,7 +52,8 @@
           </p>
           <p>
             This site is my code sample. It is hand written HTML5, Sass and vanilla JavaScript with
-            no UI framework, and it is checked with axe on every build.
+            no UI framework, built on its own <a href="design-system.html">design system</a>, and every
+            build runs axe, HTML_CodeSniffer, Playwright keyboard tests and Lighthouse.
             <a href="https://github.com/ramesh06190/portfolio">Read the source on GitHub</a>.
           </p>
         </div>
@@ -221,7 +174,8 @@
         <h2 id="work-title">Selected work</h2>
         <p class="section__intro">
           Client code and screens are confidential, so these are written case studies.
-          The live, inspectable code sample is this site and the component lab below.
+          The live, inspectable code samples are this site, the <a href="audit.html">accessibility audit</a>
+          and the <a href="components.html">components page</a>.
         </p>
 
         <div class="accordion" data-accordion>
@@ -305,6 +259,7 @@
           <li>Respects reduced motion and system color scheme settings</li>
           <li>Reflows to a single column at 320px with no horizontal scroll</li>
         </ul>
+        <p><a href="audit.html">See this process applied in a full accessibility audit</a></p>
       </div>
     </section>
 
@@ -314,7 +269,8 @@
         <h2 id="lab-title">Component lab</h2>
         <p class="section__intro">
           Working examples of patterns I build in production, styled from the same Sass design tokens as the rest of the site.
-          Try them with only a keyboard or with a screen reader.
+          Try them with only a keyboard or with a screen reader. More patterns, including a sortable table,
+          a combobox and a multi-step form, are on the <a href="components.html">components page</a>.
         </p>
 
         <div class="lab">
@@ -328,24 +284,28 @@
               <ul aria-labelledby="error-summary-title"></ul>
             </div>
 
-            <form class="form" id="demo-form" novalidate>
+            <form class="form" id="demo-form" novalidate data-validated data-summary="error-summary" data-status="demo-form-status"
+                  data-success-message="Thanks, the demo form passed validation. Nothing was sent.">
               <div class="field">
                 <label for="f-name">Full name</label>
-                <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error">
+                <input id="f-name" name="name" type="text" autocomplete="name" aria-describedby="f-name-error"
+                  data-required="Enter your full name">
                 <p class="field__error" id="f-name-error"></p>
               </div>
 
               <div class="field">
                 <label for="f-email">Email address</label>
                 <p class="field__hint" id="f-email-hint">For example, name@example.com</p>
-                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint f-email-error">
+                <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="f-email-hint f-email-error"
+                  data-required="Enter your email address" data-format="email"
+                  data-format-message="Enter an email address in the correct format, like name@example.com">
                 <p class="field__error" id="f-email-error"></p>
               </div>
 
-              <fieldset class="field">
+              <fieldset class="field" id="f-contact" data-required="Select how you would like to be contacted">
                 <legend>Preferred contact method</legend>
                 <div class="radio">
-                  <input type="radio" id="f-contact-email" name="contact" value="email" required aria-describedby="f-contact-error">
+                  <input type="radio" id="f-contact-email" name="contact" value="email" aria-describedby="f-contact-error">
                   <label for="f-contact-email">Email</label>
                 </div>
                 <div class="radio">
@@ -357,6 +317,7 @@
 
               <button class="btn btn--primary" type="submit">Submit</button>
             </form>
+            <p class="status" id="demo-form-status" role="status"></p>
           </div>
 
           <!-- Dialog + live region -->
@@ -368,7 +329,7 @@
             <h3 class="card__title card__title--spaced">Live status message</h3>
             <p class="muted">Screen readers announce the update without moving focus.</p>
             <button class="btn btn--ghost" type="button" id="save-draft">Save draft</button>
-            <p class="status" id="status" role="status"></p>
+            <p class="status" id="draft-status" role="status"></p>
           </div>
         </div>
       </div>
@@ -388,11 +349,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>Built by Pydi Adapa with HTML5, Sass and vanilla JavaScript. Tested with axe for WCAG 2.1 AA.</p>
-    </div>
-  </footer>
+  <!-- @include footer -->
 
   <dialog class="dialog" id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
     <h2 id="dialog-title">Confirm submission</h2>

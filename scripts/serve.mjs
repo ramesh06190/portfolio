@@ -27,8 +27,9 @@ export function startServer(port = 4173) {
   return new Promise((resolve) => server.listen(port, "127.0.0.1", () => resolve(server)));
 }
 
-// Only start listening when run directly (npm run serve), not when imported by a11y.mjs
+// Only start listening when run directly (npm run serve or Playwright), not when imported by a11y.mjs
 if (process.argv[1]?.endsWith("serve.mjs")) {
-  await startServer();
-  console.log("Serving dist at http://127.0.0.1:4173");
+  const port = Number(process.env.PORT) || 4173;
+  await startServer(port);
+  console.log(`Serving dist at http://127.0.0.1:${port}`);
 }

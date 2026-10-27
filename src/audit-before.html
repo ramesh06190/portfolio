@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  DELIBERATELY INACCESSIBLE PAGE.
+  This is the "before" sample for the accessibility audit (audit.html). Every problem here is
+  intentional and numbered in the audit report. It is excluded from the accessibility tests,
+  except one test that checks the tools still catch these issues.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled</title>
+<style>
+  body { margin: 0; font: 13px Verdana, Arial, sans-serif; background: #dfe3e8; color: #333; }
+  .demo-note { background: #fff3cd; border-bottom: 2px solid #c79a00; padding: 10px; font: 15px Arial, sans-serif; color: #000; }
+  .demo-note a { color: #0645ad; }
+  .wrapper { width: 960px; margin: 0 auto; background: #fff; }
+  .top { background: #2c4f7c; padding: 10px; overflow: hidden; }
+  .top img { float: left; }
+  .top .title { color: #fff; font-size: 20px; font-weight: bold; padding: 12px 0 0 70px; }
+  .menu { background: #4a6c96; padding: 6px 10px; }
+  .menu span { color: #fff; margin-right: 18px; cursor: pointer; }
+  .content { padding: 20px; }
+  .heading { font-size: 18px; font-weight: bold; margin: 10px 0; }
+  .subheading { font-size: 15px; font-weight: bold; margin: 18px 0 8px; }
+  .row { margin: 8px 0; }
+  .row input[type=text] { width: 260px; padding: 4px; border: 1px solid #bbb; }
+  .req { border-left: 3px solid #d00 !important; }
+  .hint { color: #aaa; font-size: 11px; }
+  .bad { border: 1px solid red !important; }
+  input:focus, .btn:focus { outline: none; }
+  .btn { display: inline-block; background: #2c4f7c; color: #fff; padding: 6px 16px; cursor: pointer; margin-top: 12px; }
+  table.prev { border-collapse: collapse; margin-top: 10px; }
+  table.prev td { border: 1px solid #ccc; padding: 4px 10px; }
+  .foot { padding: 10px 20px; color: #999; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  Demo page: this form is intentionally inaccessible for my accessibility audit.
+  <a href="audit.html">Read the audit report</a> or <a href="audit-after.html">see the fixed version</a>.
+</div>
+
+<div class="wrapper">
+  <div class="top">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Ccircle cx='28' cy='28' r='26' fill='%23fff'/%3E%3Ctext x='28' y='35' font-size='18' text-anchor='middle' fill='%232c4f7c' font-family='Arial'%3ESSA%3C/text%3E%3C/svg%3E" width="56" height="56">
+    <div class="title">Sample State Agency</div>
+  </div>
+  <div class="menu"><span>Home</span><span>My Claims</span><span>Payments</span><span>Help</span></div>
+
+  <div class="content">
+    <div class="heading">Weekly Benefit Claim</div>
+    <p>Fields in red are required. For help with this form <a href="#">click here</a>.</p>
+
+    <div class="subheading">Your Information</div>
+    <div class="row"><input type="text" class="req" placeholder="Full name" id="n"></div>
+    <div class="row"><input type="text" class="req" placeholder="Claimant ID" id="c"> <span class="hint">8 digits, found on your approval letter</span></div>
+    <div class="row"><input type="text" placeholder="Email" id="e"></div>
+    <div class="row"><input type="text" placeholder="Phone" id="p"></div>
+    <div class="row"><input type="text" class="req" placeholder="Week ending (mm/dd/yyyy)" id="w"></div>
+
+    <div class="subheading">This Week</div>
+    <div class="row">Did you work during this week?</div>
+    <div class="row"><input type="radio" name="worked" value="y"> Yes <input type="radio" name="worked" value="n"> No</div>
+    <div class="row"><input type="text" placeholder="Gross earnings" id="g"> <span class="hint">Before taxes</span></div>
+    <div class="row">Were you able and available for work?</div>
+    <div class="row"><input type="radio" name="able" value="y"> Yes <input type="radio" name="able" value="n"> No</div>
+
+    <div class="btn" onclick="submitClaim()">Submit</div>
+
+    <div class="subheading">Previous Weeks</div>
+    <table class="prev">
+      <tr><td><b>Week ending</b></td><td><b>Status</b></td><td><b>Amount</b></td></tr>
+      <tr><td>10/11/2026</td><td>Paid</td><td>$370</td></tr>
+      <tr><td>10/04/2026</td><td>Paid</td><td>$370</td></tr>
+      <tr><td>09/27/2026</td><td>Pending</td><td>$0</td></tr>
+    </table>
+  </div>
+  <div class="foot">Sample State Agency. Fictional demo page.</div>
+</div>
+
+<script>
+  function submitClaim() {
+    var ids = ["n", "c", "w"];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      el.className = el.value ? "req" : "req bad";
+    }
+  }
+</script>
+</body>
+</html>

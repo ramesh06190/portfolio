@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head -->
+  <title>Accessibility audit: legacy benefit claim form | Pydi Adapa</title>
+  <meta name="description" content="A WCAG 2.1 AA audit of a legacy government style form: 16 findings mapped to success criteria, how each was found, and how it was fixed.">
+</head>
+<body data-page="audit">
+  <!-- @include header -->
+
+  <main id="main" tabindex="-1">
+    <section class="section section--tight" aria-labelledby="audit-title">
+      <div class="container">
+        <p class="eyebrow">Case study</p>
+        <h1 id="audit-title">Accessibility audit of a legacy benefit claim form</h1>
+        <p class="lead">
+          I built a form the way many older government portals were built, audited it against
+          WCAG 2.1 AA and Section 508, then rebuilt it. This is the same process I follow on real
+          projects, shown on a fictional page so the code can be public.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--ghost" href="audit-before.html">Open the original form</a>
+          <a class="btn btn--primary" href="audit-after.html">Open the fixed form</a>
+        </div>
+
+        <ul class="stat-grid" role="list">
+          <li class="stat"><span class="stat__value">16</span><span class="stat__label">issues found</span></li>
+          <li class="stat"><span class="stat__value">6</span><span class="stat__label">caught by automated tools</span></li>
+          <li class="stat"><span class="stat__value">10</span><span class="stat__label">found only by manual testing</span></li>
+          <li class="stat"><span class="stat__value">0</span><span class="stat__label">errors after the fix</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="method" aria-labelledby="method-title">
+      <div class="container">
+        <h2 id="method-title">Method</h2>
+        <div class="two-col">
+          <div>
+            <h3>Standard</h3>
+            <p>WCAG 2.1 Level A and AA, which is also the technical standard behind Section 508.</p>
+            <h3>Automated testing</h3>
+            <ul>
+              <li>axe DevTools in the browser</li>
+              <li>pa11y running axe and HTML_CodeSniffer in the build pipeline</li>
+              <li>Lighthouse accessibility audit</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Manual testing</h3>
+            <ul>
+              <li>Keyboard only: Tab, Shift+Tab, Enter, Space and arrow keys through the whole form</li>
+              <li>NVDA with Chrome and Firefox: headings list, landmarks, form mode and error announcements</li>
+              <li>Browser zoom at 200% and a 320px wide viewport for reflow</li>
+              <li>Contrast checks on text, hints, borders and focus indicators</li>
+            </ul>
+            <h3>Severity</h3>
+            <dl class="severity-list">
+              <div><dt><span class="badge badge--critical">Critical</span></dt><dd>Blocks someone from finishing the task</dd></div>
+              <div><dt><span class="badge badge--serious">Serious</span></dt><dd>Task is possible but very hard or error prone</dd></div>
+              <div><dt><span class="badge badge--moderate">Moderate</span></dt><dd>Causes confusion or extra effort</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="findings" aria-labelledby="findings-title">
+      <div class="container">
+        <h2 id="findings-title">Findings</h2>
+        <p class="section__intro">
+          Each issue is logged against its WCAG success criterion so the fix can be verified.
+          On small screens the table scrolls sideways inside its own box, which can also be scrolled with the arrow keys once it has focus.
+        </p>
+
+        <div class="table-wrap" role="region" aria-labelledby="findings-caption" tabindex="0">
+          <table class="table table--findings">
+            <caption id="findings-caption">Audit findings for the legacy weekly benefit claim form</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Issue</th>
+                <th scope="col">WCAG 2.1 criterion</th>
+                <th scope="col">Severity</th>
+                <th scope="col">Found by</th>
+                <th scope="col">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <th scope="row">Text inputs have only placeholder text, no labels. The placeholder disappears as soon as someone types.</th>
+                <td>1.3.1 Info and Relationships (A), 3.3.2 Labels or Instructions (A), 4.1.2 Name, Role, Value (A)</td>
+                <td><span class="badge badge--critical">Critical</span></td>
+                <td>HTML_CodeSniffer. axe did not flag it because it accepts a placeholder as an accessible name.</td>
+                <td>Visible <code>&lt;label for&gt;</code> on every field, hints linked with <code>aria-describedby</code></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <th scope="row">Submit is a <code>div</code> with an onclick handler, and the menu items are spans. None of them can be reached with a keyboard.</th>
+                <td>2.1.1 Keyboard (A), 4.1.2 Name, Role, Value (A)</td>
+                <td><span class="badge badge--critical">Critical</span></td>
+                <td>Manual keyboard test</td>
+                <td>Native <code>&lt;button type="submit"&gt;</code> and real links in a <code>&lt;nav&gt;</code> landmark</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <th scope="row">Errors are shown only as a red border. Nothing says what is wrong, and screen readers announce nothing.</th>
+                <td>3.3.1 Error Identification (A), 1.4.1 Use of Color (A), 4.1.3 Status Messages (AA)</td>
+                <td><span class="badge badge--critical">Critical</span></td>
+                <td>Manual, NVDA</td>
+                <td>Error summary that receives focus, text errors tied to fields with <code>aria-describedby</code>, <code>aria-invalid</code>, and a thicker border so state is not color alone</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <th scope="row">Radio buttons have no labels, and the question is not tied to the group.</th>
+                <td>1.3.1 Info and Relationships (A), 4.1.2 Name, Role, Value (A)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>axe and HTML_CodeSniffer flagged the missing labels. The missing grouping was found with NVDA.</td>
+                <td><code>&lt;fieldset&gt;</code> with the question as <code>&lt;legend&gt;</code>, and a <code>&lt;label&gt;</code> on each option</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <th scope="row">Headings are bold <code>div</code>s, so there is no heading structure to navigate by.</th>
+                <td>1.3.1 Info and Relationships (A)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>Manual, NVDA headings list was empty</td>
+                <td>One <code>h1</code> and <code>h2</code> section headings in a logical order</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <th scope="row">Required fields are marked only by a red left border, explained as "fields in red are required".</th>
+                <td>1.4.1 Use of Color (A), 3.3.2 Labels or Instructions (A)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>Manual</td>
+                <td>All fields required by default, with "(optional)" in the label of the ones that are not</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <th scope="row">Hint and footer text is light gray (#aaa and #999 on white, about 2.3:1 and 2.8:1).</th>
+                <td>1.4.3 Contrast Minimum (AA)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>axe and HTML_CodeSniffer</td>
+                <td>Muted text token at 7.6:1 in light theme and 8.8:1 in dark theme</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <th scope="row">Focus outline removed with <code>outline: none</code>, so keyboard users cannot see where they are.</th>
+                <td>2.4.7 Focus Visible (AA)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>Manual keyboard test</td>
+                <td>3px focus ring from a token that meets 3:1 against both themes, using <code>:focus-visible</code></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <th scope="row">Fixed 960px layout. At 320px or 400% zoom the page scrolls in two directions.</th>
+                <td>1.4.10 Reflow (AA)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>Manual zoom and narrow viewport</td>
+                <td>Fluid layout with CSS Grid and <code>min()</code>, single column under 64em</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <th scope="row">"Previous weeks" table uses bold cells instead of header cells.</th>
+                <td>1.3.1 Info and Relationships (A)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>Manual, NVDA table navigation read no headers</td>
+                <td><code>&lt;th scope="col"&gt;</code>, row headers with <code>scope="row"</code>, and a caption</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <th scope="row">Page has no <code>lang</code> attribute, so screen readers may use the wrong voice and pronunciation.</th>
+                <td>3.1.1 Language of Page (A)</td>
+                <td><span class="badge badge--serious">Serious</span></td>
+                <td>axe and HTML_CodeSniffer</td>
+                <td><code>&lt;html lang="en"&gt;</code></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <th scope="row">No skip link and no landmarks.</th>
+                <td>2.4.1 Bypass Blocks (A)</td>
+                <td><span class="badge badge--moderate">Moderate</span></td>
+                <td>axe</td>
+                <td>Skip link plus <code>header</code>, <code>nav</code>, <code>main</code> and <code>footer</code> landmarks</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <th scope="row">Agency logo image has no alt text.</th>
+                <td>1.1.1 Non-text Content (A)</td>
+                <td><span class="badge badge--moderate">Moderate</span></td>
+                <td>axe and HTML_CodeSniffer</td>
+                <td>Descriptive <code>alt</code> text</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <th scope="row">Page title is "Untitled".</th>
+                <td>2.4.2 Page Titled (A)</td>
+                <td><span class="badge badge--moderate">Moderate</span></td>
+                <td>Manual. Tools only check that a title exists.</td>
+                <td>Title that names the page and the site</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <th scope="row">Help link says "click here" and goes nowhere.</th>
+                <td>2.4.4 Link Purpose (A)</td>
+                <td><span class="badge badge--moderate">Moderate</span></td>
+                <td>Manual, NVDA links list</td>
+                <td>Link text that makes sense on its own</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <th scope="row">Personal fields do not say what they collect, so browsers cannot autofill them.</th>
+                <td>1.3.5 Identify Input Purpose (AA)</td>
+                <td><span class="badge badge--moderate">Moderate</span></td>
+                <td>Manual code review</td>
+                <td><code>autocomplete="name"</code>, <code>email</code> and <code>tel</code>, plus the right input types</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="results-title">
+      <div class="container">
+        <h2 id="results-title">Retest results</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3 class="card__title">Automated</h3>
+            <p>0 errors from axe and HTML_CodeSniffer in both light and dark themes. This runs on every push, and the deploy fails if anything comes back.</p>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Keyboard</h3>
+            <p>Every control is reachable in a logical order with a visible focus ring. Playwright tests check the error summary focus and links back to each field.</p>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Screen reader</h3>
+            <p>With NVDA, headings and landmarks are listed, each radio group reads its question, and errors are read when focus moves to the summary.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="lesson-title">
+      <div class="container">
+        <h2 id="lesson-title">What this shows</h2>
+        <div class="about__body">
+          <p>
+            Automated tools found 6 of the 16 problems, and axe on its own caught none of the three
+            critical ones. The missing labels were only flagged by HTML_CodeSniffer, and the fake
+            button and silent errors needed a keyboard and a screen reader to find. That is why I treat a clean axe report as the starting point, not
+            the finish line.
+          </p>
+          <p>
+            Most fixes were not ARIA. They were native HTML used properly: labels, fieldsets,
+            buttons, headings and table headers. ARIA was only needed to tie errors and hints to
+            their fields and to mark invalid inputs.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>

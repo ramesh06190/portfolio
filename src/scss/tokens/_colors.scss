@@ -16,6 +16,11 @@ $light: (
   "error": #b3261e,
   "error-bg": #fdecea,
   "success": #1e6b34,
+  "success-bg": #e6f4ea,
+  "warning": #7a4300,
+  "warning-bg": #fff1d6,
+  "disabled-bg": #e1e6eb,
+  "disabled-text": #5f6b77,
 );
 
 $dark: (
@@ -34,6 +39,11 @@ $dark: (
   "error": #ff9a8f,
   "error-bg": #3a1a17,
   "success": #7ee2a0,
+  "success-bg": #12301c,
+  "warning": #ffc266,
+  "warning-bg": #3a2a10,
+  "disabled-bg": #2a333d,
+  "disabled-text": #9aa5b1,
 );
 
 @mixin emit($theme) {

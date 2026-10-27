@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head -->
+  <title>Accessible components | Pydi Adapa</title>
+  <meta name="description" content="Accessible components common in government applications: a sortable paginated data table, an autocomplete combobox, a memorable date input and a multi-step form.">
+</head>
+<body data-page="components">
+  <!-- @include header -->
+
+  <main id="main" tabindex="-1">
+    <section class="section section--tight" aria-labelledby="cmp-title">
+      <div class="container">
+        <p class="eyebrow">Working code</p>
+        <h1 id="cmp-title">Accessible components</h1>
+        <p class="lead">
+          Patterns that show up in almost every government and healthcare application, built from scratch
+          with vanilla JavaScript and the site's design tokens. Each one follows the WAI-ARIA Authoring
+          Practices and is covered by Playwright keyboard tests.
+        </p>
+        <nav class="toc" aria-labelledby="cmp-toc-title">
+          <h2 id="cmp-toc-title" class="toc__title">Components</h2>
+          <ul>
+            <li><a href="#table">Sortable data table with pagination</a></li>
+            <li><a href="#combobox">Autocomplete combobox</a></li>
+            <li><a href="#date">Memorable date input</a></li>
+            <li><a href="#multi-step">Multi-step form</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Sortable table -->
+    <section class="section section--alt" id="table" aria-labelledby="table-title">
+      <div class="container">
+        <h2 id="table-title">Sortable data table with pagination</h2>
+        <div class="component-notes">
+          <p>Sort buttons sit inside the column headers, and the sorted header gets <code>aria-sort</code>. The first cell of each row is a row header. A status line announces the sort and range after each change. Previous and Next use <code>aria-disabled</code> instead of <code>disabled</code> so they keep focus at the ends of the list.</p>
+        </div>
+
+        <div class="data-table" data-sortable-table data-source="claims" data-page-size="8" data-noun="claims">
+          <p class="data-table__status" role="status" data-table-status></p>
+          <div class="table-wrap" role="region" aria-labelledby="claims-caption" tabindex="0">
+            <table class="table table--sortable">
+              <caption id="claims-caption">Recent claims (sample data)</caption>
+              <thead>
+                <tr>
+                  <th scope="col" data-key="id"><button type="button" class="sort-button"><span data-label>Claim ID</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="name"><button type="button" class="sort-button"><span data-label>Claimant</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="program"><button type="button" class="sort-button"><span data-label>Program</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="filed" data-type="date"><button type="button" class="sort-button"><span data-label>Filed</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="status"><button type="button" class="sort-button"><span data-label>Status</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="amount" data-type="money" class="num"><button type="button" class="sort-button"><span data-label>Weekly amount</span><span class="sort-button__icon" aria-hidden="true"></span></button></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <nav class="pagination" aria-label="Claims table pages" data-pagination><ul></ul></nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combobox -->
+    <section class="section" id="combobox" aria-labelledby="combobox-title">
+      <div class="container">
+        <h2 id="combobox-title">Autocomplete combobox</h2>
+        <div class="component-notes">
+          <p>Focus never leaves the input. Arrow keys move a highlight that is exposed with <code>aria-activedescendant</code>, Enter picks an option, Escape closes the list and a second Escape clears it. The number of matches is announced after a short pause so it does not talk over typing.</p>
+        </div>
+
+        <div class="card demo-card">
+          <div class="field combobox" data-combobox data-options="us-states">
+            <label for="cb-state" id="cb-state-label">State</label>
+            <p class="field__hint" id="cb-state-hint">Start typing, then use the up and down arrow keys to choose</p>
+            <div class="combobox__wrap">
+              <input id="cb-state" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false"
+                     aria-controls="cb-state-listbox" aria-describedby="cb-state-hint" autocomplete="off">
+              <ul class="combobox__list" id="cb-state-listbox" role="listbox" aria-labelledby="cb-state-label" hidden></ul>
+            </div>
+            <p class="visually-hidden" role="status" data-combobox-status></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Date input -->
+    <section class="section section--alt" id="date" aria-labelledby="date-title">
+      <div class="container">
+        <h2 id="date-title">Memorable date input</h2>
+        <div class="component-notes">
+          <p>For dates people already know, like a date of birth, three labeled number fields are easier than a calendar widget for keyboard, screen reader and voice control users. This is the pattern used by GOV.UK and USWDS. Errors name the missing part and only mark the fields that are wrong.</p>
+        </div>
+
+        <div class="card demo-card">
+          <div class="error-summary" id="date-summary" tabindex="-1" hidden>
+            <h3 id="date-summary-title">There is a problem</h3>
+            <ul aria-labelledby="date-summary-title"></ul>
+          </div>
+          <form class="form" novalidate data-validated data-summary="date-summary" data-status="date-status"
+                data-success-message="That date is valid.">
+            <fieldset class="field date-input" id="dob" data-validate="date" data-label="date of birth" data-past
+                      data-required="Enter your date of birth" aria-describedby="dob-hint dob-error">
+              <legend>What is your date of birth?</legend>
+              <p class="field__hint" id="dob-hint">For example, 27 3 1990</p>
+              <p class="field__error" id="dob-error"></p>
+              <div class="date-input__parts">
+                <div class="date-input__part">
+                  <label for="dob-day">Day</label>
+                  <input id="dob-day" data-part="day" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-day" class="input--2">
+                </div>
+                <div class="date-input__part">
+                  <label for="dob-month">Month</label>
+                  <input id="dob-month" data-part="month" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-month" class="input--2">
+                </div>
+                <div class="date-input__part">
+                  <label for="dob-year">Year</label>
+                  <input id="dob-year" data-part="year" type="text" inputmode="numeric" maxlength="4" autocomplete="bday-year" class="input--4">
+                </div>
+              </div>
+            </fieldset>
+            <button class="btn btn--primary" type="submit">Check date</button>
+          </form>
+          <p class="status" id="date-status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-step form -->
+    <section class="section" id="multi-step" aria-labelledby="ms-title">
+      <div class="container">
+        <h2 id="ms-title">Multi-step form</h2>
+        <div class="component-notes">
+          <p>Each step is checked before moving on, and focus goes to the new step heading so screen reader users know the page changed. The progress list marks the current step with <code>aria-current="step"</code> and says "Completed" in text, not only with a checkmark. The last step lets people review and change answers before they submit. It reuses the combobox and date input from above.</p>
+        </div>
+
+        <div class="card demo-card demo-card--wide">
+          <form class="form multi-step" id="ms-form" novalidate data-multi-step data-summary="ms-summary" data-confirmation="ms-confirmation">
+            <ol class="progress" aria-label="Form progress" data-progress>
+              <li><span class="progress__marker" aria-hidden="true"></span><span class="visually-hidden" data-progress-state></span>Your details</li>
+              <li><span class="progress__marker" aria-hidden="true"></span><span class="visually-hidden" data-progress-state></span>Employment</li>
+              <li><span class="progress__marker" aria-hidden="true"></span><span class="visually-hidden" data-progress-state></span>Review</li>
+            </ol>
+
+            <div class="error-summary" id="ms-summary" tabindex="-1" hidden>
+              <h3 id="ms-summary-title">There is a problem</h3>
+              <ul aria-labelledby="ms-summary-title"></ul>
+            </div>
+
+            <section data-step aria-labelledby="ms-step1-title">
+              <h3 id="ms-step1-title" tabindex="-1"><span class="step-count">Step 1 of 3</span> Your details</h3>
+
+              <div class="field">
+                <label for="ms-name">Full name</label>
+                <input id="ms-name" type="text" autocomplete="name" aria-describedby="ms-name-error"
+                       data-required="Enter your full name" data-review-label="Full name">
+                <p class="field__error" id="ms-name-error"></p>
+              </div>
+
+              <fieldset class="field date-input" id="ms-dob" data-validate="date" data-label="date of birth" data-past
+                        data-required="Enter your date of birth" data-review-label="Date of birth"
+                        aria-describedby="ms-dob-hint ms-dob-error">
+                <legend>Date of birth</legend>
+                <p class="field__hint" id="ms-dob-hint">For example, 27 3 1990</p>
+                <p class="field__error" id="ms-dob-error"></p>
+                <div class="date-input__parts">
+                  <div class="date-input__part">
+                    <label for="ms-dob-day">Day</label>
+                    <input id="ms-dob-day" data-part="day" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-day" class="input--2">
+                  </div>
+                  <div class="date-input__part">
+                    <label for="ms-dob-month">Month</label>
+                    <input id="ms-dob-month" data-part="month" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-month" class="input--2">
+                  </div>
+                  <div class="date-input__part">
+                    <label for="ms-dob-year">Year</label>
+                    <input id="ms-dob-year" data-part="year" type="text" inputmode="numeric" maxlength="4" autocomplete="bday-year" class="input--4">
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="field combobox" data-combobox data-options="us-states">
+                <label for="ms-state" id="ms-state-label">State you live in</label>
+                <p class="field__hint" id="ms-state-hint">Start typing, then choose from the list</p>
+                <div class="combobox__wrap">
+                  <input id="ms-state" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false"
+                         aria-controls="ms-state-listbox" aria-describedby="ms-state-hint ms-state-error" autocomplete="off"
+                         data-required="Enter the state you live in" data-format="us-state"
+                         data-format-message="Choose a state from the list" data-review-label="State">
+                  <ul class="combobox__list" id="ms-state-listbox" role="listbox" aria-labelledby="ms-state-label" hidden></ul>
+                </div>
+                <p class="field__error" id="ms-state-error"></p>
+                <p class="visually-hidden" role="status" data-combobox-status></p>
+              </div>
+            </section>
+
+            <section data-step aria-labelledby="ms-step2-title" hidden>
+              <h3 id="ms-step2-title" tabindex="-1"><span class="step-count">Step 2 of 3</span> Employment</h3>
+
+              <div class="field">
+                <label for="ms-employer">Most recent employer</label>
+                <input id="ms-employer" type="text" autocomplete="organization" aria-describedby="ms-employer-error"
+                       data-required="Enter your most recent employer" data-review-label="Most recent employer">
+                <p class="field__error" id="ms-employer-error"></p>
+              </div>
+
+              <fieldset class="field date-input" id="ms-lastday" data-validate="date" data-label="last day worked" data-past
+                        data-required="Enter your last day worked" data-review-label="Last day worked"
+                        aria-describedby="ms-lastday-hint ms-lastday-error">
+                <legend>Last day worked</legend>
+                <p class="field__hint" id="ms-lastday-hint">For example, 18 10 2026</p>
+                <p class="field__error" id="ms-lastday-error"></p>
+                <div class="date-input__parts">
+                  <div class="date-input__part">
+                    <label for="ms-lastday-day">Day</label>
+                    <input id="ms-lastday-day" data-part="day" type="text" inputmode="numeric" maxlength="2" class="input--2">
+                  </div>
+                  <div class="date-input__part">
+                    <label for="ms-lastday-month">Month</label>
+                    <input id="ms-lastday-month" data-part="month" type="text" inputmode="numeric" maxlength="2" class="input--2">
+                  </div>
+                  <div class="date-input__part">
+                    <label for="ms-lastday-year">Year</label>
+                    <input id="ms-lastday-year" data-part="year" type="text" inputmode="numeric" maxlength="4" class="input--4">
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="field" id="ms-reason" data-required="Select why your job ended" data-review-label="Reason job ended">
+                <legend>Why did your job end?</legend>
+                <p class="field__error" id="ms-reason-error"></p>
+                <div class="radio">
+                  <input type="radio" id="ms-reason-layoff" name="reason" value="layoff" aria-describedby="ms-reason-error">
+                  <label for="ms-reason-layoff">Laid off or lack of work</label>
+                </div>
+                <div class="radio">
+                  <input type="radio" id="ms-reason-hours" name="reason" value="hours" aria-describedby="ms-reason-error">
+                  <label for="ms-reason-hours">Hours reduced</label>
+                </div>
+                <div class="radio">
+                  <input type="radio" id="ms-reason-other" name="reason" value="other" aria-describedby="ms-reason-error">
+                  <label for="ms-reason-other">Another reason</label>
+                </div>
+              </fieldset>
+            </section>
+
+            <section data-step aria-labelledby="ms-step3-title" hidden>
+              <h3 id="ms-step3-title" tabindex="-1"><span class="step-count">Step 3 of 3</span> Review your answers</h3>
+              <dl class="review" data-review></dl>
+            </section>
+
+            <div class="multi-step__actions">
+              <button class="btn btn--ghost" type="button" data-back>Back</button>
+              <button class="btn btn--primary" type="button" data-next>Continue</button>
+              <button class="btn btn--primary" type="submit" data-submit>Submit claim</button>
+            </div>
+          </form>
+
+          <div class="confirmation" id="ms-confirmation" hidden>
+            <h3 tabindex="-1">Claim submitted</h3>
+            <p>Your reference number is <strong data-reference></strong>. This is a demo, so nothing was sent.</p>
+            <button class="btn btn--ghost" type="button" data-restart>Start again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>

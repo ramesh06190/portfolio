@@ -1,0 +1,13 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b5cad'/><text x='16' y='22' font-size='15' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>PA</text></svg>">
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    // Apply the theme before paint to avoid a flash. ?theme=dark in the URL wins over the saved choice.
+    try {
+      var t = new URLSearchParams(location.search).get("theme") || localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+  <script type="module" src="js/main.js"></script>

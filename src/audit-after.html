@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head -->
+  <title>Weekly benefit claim (fixed version) | Pydi Adapa</title>
+  <meta name="description" content="The fixed, WCAG 2.1 AA version of a deliberately inaccessible legacy benefit claim form.">
+</head>
+<body data-page="audit">
+  <!-- @include header -->
+
+  <main id="main" tabindex="-1">
+    <div class="container section section--tight">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="audit.html">Accessibility audit</a></li>
+          <li><a href="audit-after.html" aria-current="page">Fixed version</a></li>
+        </ol>
+      </nav>
+
+      <div class="callout">
+        <p>
+          This is the remediated version of the <a href="audit-before.html">legacy claim form</a>.
+          Each fix is explained in the <a href="audit.html#findings">audit findings table</a>.
+          It is a demo, so nothing is sent.
+        </p>
+      </div>
+
+      <div class="agency-banner">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Ccircle cx='28' cy='28' r='26' fill='%23fff'/%3E%3Ctext x='28' y='35' font-size='18' text-anchor='middle' fill='%232c4f7c' font-family='Arial'%3ESSA%3C/text%3E%3C/svg%3E"
+             width="48" height="48" alt="Sample State Agency logo">
+        <p>Sample State Agency</p>
+      </div>
+
+      <h1>Weekly benefit claim</h1>
+      <p class="lead">All questions are required unless they say optional.</p>
+
+      <div class="claim-layout">
+        <div>
+          <div class="error-summary" id="claim-summary" tabindex="-1" hidden>
+            <h2 id="claim-summary-title">There is a problem</h2>
+            <ul aria-labelledby="claim-summary-title"></ul>
+          </div>
+
+          <form class="form" id="claim-form" novalidate data-validated data-summary="claim-summary"
+                data-status="claim-status"
+                data-success-message="Your weekly claim was submitted. This is a demo, so nothing was sent.">
+
+            <h2 class="form__section-title">Your information</h2>
+
+            <div class="field">
+              <label for="claim-name">Full name</label>
+              <input id="claim-name" name="name" type="text" autocomplete="name"
+                     aria-describedby="claim-name-error" data-required="Enter your full name">
+              <p class="field__error" id="claim-name-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="claim-id">Claimant ID</label>
+              <p class="field__hint" id="claim-id-hint">8 digits, found on your approval letter</p>
+              <input id="claim-id" name="claimantId" type="text" inputmode="numeric" class="input--short"
+                     aria-describedby="claim-id-hint claim-id-error" data-required="Enter your claimant ID">
+              <p class="field__error" id="claim-id-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="claim-email">Email address (optional)</label>
+              <input id="claim-email" name="email" type="email" autocomplete="email"
+                     aria-describedby="claim-email-error" data-format="email"
+                     data-format-message="Enter an email address in the correct format, like name@example.com">
+              <p class="field__error" id="claim-email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="claim-phone">Phone number (optional)</label>
+              <input id="claim-phone" name="phone" type="tel" autocomplete="tel" class="input--medium">
+            </div>
+
+            <fieldset class="field date-input" id="claim-week" data-validate="date" data-label="week ending date"
+                      data-required="Enter the week ending date" aria-describedby="claim-week-hint claim-week-error">
+              <legend>Week ending date</legend>
+              <p class="field__hint" id="claim-week-hint">For example, 18 10 2026</p>
+              <p class="field__error" id="claim-week-error"></p>
+              <div class="date-input__parts">
+                <div class="date-input__part">
+                  <label for="claim-week-day">Day</label>
+                  <input id="claim-week-day" data-part="day" type="text" inputmode="numeric" maxlength="2" class="input--2">
+                </div>
+                <div class="date-input__part">
+                  <label for="claim-week-month">Month</label>
+                  <input id="claim-week-month" data-part="month" type="text" inputmode="numeric" maxlength="2" class="input--2">
+                </div>
+                <div class="date-input__part">
+                  <label for="claim-week-year">Year</label>
+                  <input id="claim-week-year" data-part="year" type="text" inputmode="numeric" maxlength="4" class="input--4">
+                </div>
+              </div>
+            </fieldset>
+
+            <h2 class="form__section-title">This week</h2>
+
+            <fieldset class="field" id="claim-worked" data-required="Select yes if you worked during this week">
+              <legend>Did you work during this week?</legend>
+              <p class="field__error" id="claim-worked-error"></p>
+              <div class="radio">
+                <input type="radio" id="claim-worked-yes" name="worked" value="yes" aria-describedby="claim-worked-error">
+                <label for="claim-worked-yes">Yes</label>
+              </div>
+              <div class="radio">
+                <input type="radio" id="claim-worked-no" name="worked" value="no" aria-describedby="claim-worked-error">
+                <label for="claim-worked-no">No</label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="claim-earnings">Gross earnings (optional)</label>
+              <p class="field__hint" id="claim-earnings-hint">Before taxes, in dollars</p>
+              <div class="input-prefix">
+                <span class="input-prefix__symbol" aria-hidden="true">$</span>
+                <input id="claim-earnings" name="earnings" type="text" inputmode="decimal" class="input--medium"
+                       aria-describedby="claim-earnings-hint">
+              </div>
+            </div>
+
+            <fieldset class="field" id="claim-able" data-required="Select yes if you were able and available for work">
+              <legend>Were you able and available for work?</legend>
+              <p class="field__error" id="claim-able-error"></p>
+              <div class="radio">
+                <input type="radio" id="claim-able-yes" name="able" value="yes" aria-describedby="claim-able-error">
+                <label for="claim-able-yes">Yes</label>
+              </div>
+              <div class="radio">
+                <input type="radio" id="claim-able-no" name="able" value="no" aria-describedby="claim-able-error">
+                <label for="claim-able-no">No</label>
+              </div>
+            </fieldset>
+
+            <button class="btn btn--primary" type="submit">Submit weekly claim</button>
+          </form>
+          <p class="status" id="claim-status" role="status"></p>
+        </div>
+
+        <aside class="claim-aside" aria-labelledby="prev-title">
+          <h2 id="prev-title">Previous weeks</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Your last three weekly claims</caption>
+              <thead>
+                <tr><th scope="col">Week ending</th><th scope="col">Status</th><th scope="col" class="num">Amount</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Oct 11, 2026</th><td>Paid</td><td class="num">$370</td></tr>
+                <tr><th scope="row">Oct 4, 2026</th><td>Paid</td><td class="num">$370</td></tr>
+                <tr><th scope="row">Sep 27, 2026</th><td>Pending</td><td class="num">$0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><a href="audit.html#method">Read how this form was tested</a></p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>

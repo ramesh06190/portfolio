@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head -->
+  <title>Design system | Pydi Adapa</title>
+  <meta name="description" content="Documentation for the small design system behind this site: Sass tokens, themes, live contrast checks, component states and usage guidance.">
+</head>
+<body data-page="design-system">
+  <!-- @include header -->
+
+  <main id="main" tabindex="-1">
+    <section class="section section--tight" aria-labelledby="ds-title">
+      <div class="container">
+        <p class="eyebrow">Documentation</p>
+        <h1 id="ds-title">Design system</h1>
+        <p class="lead">
+          Everything on this site is built from one set of Sass design tokens. Components never use
+          raw colors or pixel values, so a change to a token updates every page in both themes.
+          This page documents those tokens, the component states and how to use them.
+        </p>
+
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title" class="toc__title">On this page</h2>
+          <ul>
+            <li><a href="#principles">Principles</a></li>
+            <li><a href="#color">Color</a></li>
+            <li><a href="#type">Typography</a></li>
+            <li><a href="#spacing">Spacing and shape</a></li>
+            <li><a href="#components">Component states</a></li>
+            <li><a href="#usage">Usage guidance</a></li>
+            <li><a href="#vs-bootstrap">Design system vs Bootstrap</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="principles" aria-labelledby="principles-title">
+      <div class="container">
+        <h2 id="principles-title">Principles</h2>
+        <ul class="card-grid card-grid--4" role="list">
+          <li class="card">
+            <h3 class="card__title">Accessible by default</h3>
+            <p>Every color pair meets WCAG 2.1 AA in both themes, every control has a visible focus state and a 44px touch target.</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">Native first</h3>
+            <p>Buttons are buttons, inputs have labels, groups use fieldsets. ARIA only fills gaps that HTML cannot.</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">One source of truth</h3>
+            <p>Tokens live in <code>src/scss/tokens</code>. Components reference tokens, never hard coded values.</p>
+          </li>
+          <li class="card">
+            <h3 class="card__title">State is never color alone</h3>
+            <p>Selected tabs get a bar, invalid inputs get a thicker border and text, completed steps get an icon and words.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="color" aria-labelledby="color-title">
+      <div class="container">
+        <h2 id="color-title">Color</h2>
+        <p class="section__intro">
+          Sass maps in <code>tokens/_colors.scss</code> are turned into CSS custom properties for light and dark
+          themes. The values and contrast ratios below are read from the page as it is right now,
+          so switch the theme and they update. Text needs 4.5:1 and UI parts like borders and focus rings need 3:1.
+        </p>
+
+        <div class="table-wrap" role="region" aria-labelledby="color-caption" tabindex="0">
+          <table class="table table--tokens">
+            <caption id="color-caption">Color tokens with live contrast checks for the current theme</caption>
+            <thead>
+              <tr>
+                <th scope="col">Token</th>
+                <th scope="col">Swatch</th>
+                <th scope="col">Value</th>
+                <th scope="col">Used for</th>
+                <th scope="col">Checked against</th>
+                <th scope="col">Contrast</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><code>--color-text</code></th>
+                <td><span class="swatch" style="background: var(--color-text)"></span></td>
+                <td><code data-token-value="text"></code></td>
+                <td>Body text and headings</td>
+                <td>Background, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="text on bg" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-text-muted</code></th>
+                <td><span class="swatch" style="background: var(--color-text-muted)"></span></td>
+                <td><code data-token-value="text-muted"></code></td>
+                <td>Hints, captions, secondary text</td>
+                <td>Surface, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="text-muted on surface" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-primary</code></th>
+                <td><span class="swatch" style="background: var(--color-primary)"></span></td>
+                <td><code data-token-value="primary"></code></td>
+                <td>Links, primary buttons, selected states</td>
+                <td>Background, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="primary on bg" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-on-primary</code></th>
+                <td><span class="swatch" style="background: var(--color-on-primary)"></span></td>
+                <td><code data-token-value="on-primary"></code></td>
+                <td>Text on primary buttons</td>
+                <td>Primary, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="on-primary on primary" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-focus</code></th>
+                <td><span class="swatch" style="background: var(--color-focus)"></span></td>
+                <td><code data-token-value="focus"></code></td>
+                <td>Focus ring on every control</td>
+                <td>Surface, needs 3:1</td>
+                <td><span class="contrast" data-contrast="focus on surface" data-min="3"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-border</code></th>
+                <td><span class="swatch" style="background: var(--color-border)"></span></td>
+                <td><code data-token-value="border"></code></td>
+                <td>Input and control borders</td>
+                <td>Background, needs 3:1</td>
+                <td><span class="contrast" data-contrast="border on bg" data-min="3"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-error</code></th>
+                <td><span class="swatch" style="background: var(--color-error)"></span></td>
+                <td><code data-token-value="error"></code></td>
+                <td>Error text and invalid borders</td>
+                <td>Error background, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="error on error-bg" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-success</code></th>
+                <td><span class="swatch" style="background: var(--color-success)"></span></td>
+                <td><code data-token-value="success"></code></td>
+                <td>Success messages and completed steps</td>
+                <td>Surface, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="success on surface" data-min="4.5"></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><code>--color-surface</code></th>
+                <td><span class="swatch" style="background: var(--color-surface)"></span></td>
+                <td><code data-token-value="surface"></code></td>
+                <td>Alternate section background</td>
+                <td>Text on surface, needs 4.5:1</td>
+                <td><span class="contrast" data-contrast="text on surface" data-min="4.5"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="type" aria-labelledby="type-title">
+      <div class="container">
+        <h2 id="type-title">Typography</h2>
+        <p class="section__intro">
+          System font stack for speed and familiarity. Sizes are in rem so they follow the reader's browser
+          font setting, and the larger steps use <code>clamp()</code> to scale smoothly between phone and desktop.
+        </p>
+        <dl class="type-scale">
+          <div><dt><code>text-size("3xl")</code> page title</dt><dd class="type-scale__sample ts-3xl">Weekly benefit claim</dd></div>
+          <div><dt><code>text-size("2xl")</code> section heading</dt><dd class="type-scale__sample ts-2xl">Your information</dd></div>
+          <div><dt><code>text-size("xl")</code></dt><dd class="type-scale__sample ts-xl">Previous weeks</dd></div>
+          <div><dt><code>text-size("lg")</code> card titles, lead text</dt><dd class="type-scale__sample ts-lg">Did you work during this week?</dd></div>
+          <div><dt><code>text-size("base")</code> body, 17px</dt><dd class="type-scale__sample ts-base">All questions are required unless they say optional.</dd></div>
+          <div><dt><code>text-size("sm")</code> hints, meta</dt><dd class="type-scale__sample ts-sm">8 digits, found on your approval letter</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="spacing" aria-labelledby="spacing-title">
+      <div class="container">
+        <h2 id="spacing-title">Spacing and shape</h2>
+        <div class="two-col">
+          <div>
+            <h3>Spacing scale</h3>
+            <p class="muted">A 4px based scale, used through the <code>space()</code> function.</p>
+            <ul class="space-scale" role="list">
+              <li><code>space(1)</code><span class="space-scale__bar" style="width: 0.25rem"></span><span>4px</span></li>
+              <li><code>space(2)</code><span class="space-scale__bar" style="width: 0.5rem"></span><span>8px</span></li>
+              <li><code>space(3)</code><span class="space-scale__bar" style="width: 0.75rem"></span><span>12px</span></li>
+              <li><code>space(4)</code><span class="space-scale__bar" style="width: 1rem"></span><span>16px</span></li>
+              <li><code>space(5)</code><span class="space-scale__bar" style="width: 1.5rem"></span><span>24px</span></li>
+              <li><code>space(6)</code><span class="space-scale__bar" style="width: 2rem"></span><span>32px</span></li>
+              <li><code>space(7)</code><span class="space-scale__bar" style="width: 3rem"></span><span>48px</span></li>
+              <li><code>space(8)</code><span class="space-scale__bar" style="width: 4.5rem"></span><span>72px</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Radius and breakpoints</h3>
+            <table class="table">
+              <caption class="visually-hidden">Radius and breakpoint tokens</caption>
+              <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><code>radius("sm")</code></th><td>4px</td><td>Inputs</td></tr>
+                <tr><th scope="row"><code>radius("md")</code></th><td>8px</td><td>Buttons, alerts</td></tr>
+                <tr><th scope="row"><code>radius("lg")</code></th><td>14px</td><td>Cards, dialogs</td></tr>
+                <tr><th scope="row"><code>up("sm")</code></th><td>36em</td><td>Large phones</td></tr>
+                <tr><th scope="row"><code>up("md")</code></th><td>48em</td><td>Tablets</td></tr>
+                <tr><th scope="row"><code>up("lg")</code></th><td>64em</td><td>Desktop layouts</td></tr>
+              </tbody>
+            </table>
+            <p class="muted">Breakpoints are in em so layouts also switch when someone zooms in.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="components" aria-labelledby="components-title">
+      <div class="container">
+        <h2 id="components-title">Component states</h2>
+        <p class="section__intro">
+          Hover and focus are shown here with demo classes so every state is visible at once.
+          On real pages they come from <code>:hover</code> and <code>:focus-visible</code>.
+        </p>
+
+        <h3>Buttons</h3>
+        <div class="state-grid">
+          <figure><button class="btn btn--primary" type="button" tabindex="-1">Continue</button><figcaption>Primary, default</figcaption></figure>
+          <figure><button class="btn btn--primary is-hover" type="button" tabindex="-1">Continue</button><figcaption>Primary, hover</figcaption></figure>
+          <figure><button class="btn btn--primary is-focus" type="button" tabindex="-1">Continue</button><figcaption>Primary, focus</figcaption></figure>
+          <figure><button class="btn btn--primary" type="button" disabled>Continue</button><figcaption>Primary, disabled</figcaption></figure>
+          <figure><button class="btn btn--ghost" type="button" tabindex="-1">Back</button><figcaption>Secondary, default</figcaption></figure>
+          <figure><button class="btn btn--ghost is-hover" type="button" tabindex="-1">Back</button><figcaption>Secondary, hover</figcaption></figure>
+          <figure><button class="btn btn--ghost is-focus" type="button" tabindex="-1">Back</button><figcaption>Secondary, focus</figcaption></figure>
+          <figure><button class="link-button" type="button" tabindex="-1">Change</button><figcaption>Link button</figcaption></figure>
+        </div>
+
+        <h3>Text inputs</h3>
+        <div class="state-grid state-grid--wide">
+          <div class="field">
+            <label for="ds-default">Default</label>
+            <input id="ds-default" type="text">
+          </div>
+          <div class="field">
+            <label for="ds-hint">With hint</label>
+            <p class="field__hint" id="ds-hint-text">8 digits, found on your approval letter</p>
+            <input id="ds-hint" type="text" aria-describedby="ds-hint-text">
+          </div>
+          <div class="field">
+            <label for="ds-error">With error</label>
+            <p class="field__error" id="ds-error-text">Error: Enter your claimant ID</p>
+            <input id="ds-error" type="text" aria-invalid="true" aria-describedby="ds-error-text">
+          </div>
+          <div class="field">
+            <label for="ds-focus">Focus</label>
+            <input id="ds-focus" type="text" class="is-focus" tabindex="-1">
+          </div>
+        </div>
+
+        <h3>Status badges</h3>
+        <p class="muted">Badges always carry the status as text. The color only reinforces it.</p>
+        <ul class="badge-row" role="list">
+          <li><span class="badge badge--approved">Approved</span></li>
+          <li><span class="badge badge--pending">Pending review</span></li>
+          <li><span class="badge badge--needs">Needs information</span></li>
+          <li><span class="badge badge--denied">Denied</span></li>
+        </ul>
+
+        <h3>Alerts</h3>
+        <div class="error-summary" tabindex="-1">
+          <h4 id="ds-summary-title">There is a problem</h4>
+          <ul aria-labelledby="ds-summary-title"><li><a href="#ds-error">Enter your claimant ID</a></li></ul>
+        </div>
+        <div class="callout"><p>Callouts hold neutral information, like a note that a page is a demo.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="usage" aria-labelledby="usage-title">
+      <div class="container">
+        <h2 id="usage-title">Usage guidance</h2>
+        <div class="two-col">
+          <div class="guidance guidance--do">
+            <h3>Do</h3>
+            <ul>
+              <li>Use one primary button per screen for the main action</li>
+              <li>Label every field above the input, with hints between the label and the input</li>
+              <li>Mark optional fields, not required ones</li>
+              <li>Write error messages that say how to fix the problem, like "Enter your claimant ID"</li>
+              <li>Group related radios and checkboxes in a fieldset with the question as the legend</li>
+              <li>Use <code>&lt;a&gt;</code> to go somewhere and <code>&lt;button&gt;</code> to do something</li>
+            </ul>
+          </div>
+          <div class="guidance guidance--dont">
+            <h3>Don't</h3>
+            <ul>
+              <li>Use placeholder text as a label</li>
+              <li>Disable the submit button until a form is valid. People cannot find out what is wrong.</li>
+              <li>Show state with color alone</li>
+              <li>Remove focus outlines without a stronger replacement</li>
+              <li>Add ARIA roles to elements that already have the right native role</li>
+              <li>Use raw hex values or pixel spacing in component styles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="vs-bootstrap" aria-labelledby="vs-title">
+      <div class="container">
+        <h2 id="vs-title">Design system vs Bootstrap</h2>
+        <p class="section__intro">
+          Bootstrap is a component library. A design system is the set of decisions, tokens, components,
+          rules and documentation that a team agrees to share. Bootstrap can sit inside a design system,
+          but it is not one by itself.
+        </p>
+        <div class="table-wrap" role="region" aria-labelledby="vs-caption" tabindex="0">
+          <table class="table">
+            <caption id="vs-caption">How an enterprise design system differs from using Bootstrap on its own</caption>
+            <thead>
+              <tr><th scope="col">Topic</th><th scope="col">Bootstrap on its own</th><th scope="col">Enterprise design system</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Purpose</th><td>Generic, ready made components to build quickly</td><td>One shared look, behavior and voice across every product an organization runs</td></tr>
+              <tr><th scope="row">Source of truth</th><td>Bootstrap's own variables and defaults</td><td>Design tokens owned by the organization, shared by design (Figma) and code</td></tr>
+              <tr><th scope="row">Accessibility</th><td>A reasonable base, but teams still own contrast, labels, focus and error handling</td><td>Accessibility rules are built into every component and tested before release</td></tr>
+              <tr><th scope="row">Content and patterns</th><td>None. It provides widgets, not guidance.</td><td>Patterns like "ask for a date" or "show errors", plus writing guidance for labels and messages</td></tr>
+              <tr><th scope="row">Governance</th><td>Each team customizes it differently</td><td>Versioned releases, contribution process, and a team that owns it</td></tr>
+              <tr><th scope="row">Examples</th><td>Bootstrap 5</td><td>U.S. Web Design System (USWDS), GOV.UK Design System, Microsoft Fluent, IBM Carbon</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">
+          In practice I have worked both ways: Bootstrap 5 on the DWD portal and React dashboards, and a
+          shared component library with Telerik UI on the Holman vendor portal. This site follows the
+          design system approach, closer to how USWDS and GOV.UK are built.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include footer -->
+</body>
+</html>
