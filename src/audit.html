@@ -256,6 +256,14 @@
             buttons, headings and table headers. ARIA was only needed to tie errors and hints to
             their fields and to mark invalid inputs.
           </p>
+          <p>
+            This audit used NVDA. JAWS is the other screen reader most people use at work, government
+            offices included, and it needs a paid license, so it was not part of this round. JAWS and
+            NVDA switch between reading and forms mode in different ways, and each decides for itself
+            how much of a description or group label to read. So on JAWS I would retest the parts that
+            rely on that first: the error summary taking focus, error text tied to fields with
+            <code>aria-describedby</code>, and the radio groups and date fields inside a fieldset.
+          </p>
         </div>
       </div>
     </section>
